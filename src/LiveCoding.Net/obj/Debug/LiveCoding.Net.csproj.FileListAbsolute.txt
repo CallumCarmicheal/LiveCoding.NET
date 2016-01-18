@@ -1,0 +1,11 @@
+G:\GitHub\LiveCoding.Net\LiveCoding.Net\LiveCoding.Net\bin\Debug\LiveCoding.Net.exe.config
+G:\GitHub\LiveCoding.Net\LiveCoding.Net\LiveCoding.Net\bin\Debug\LiveCoding.Net.exe
+G:\GitHub\LiveCoding.Net\LiveCoding.Net\LiveCoding.Net\bin\Debug\LiveCoding.Net.pdb
+G:\GitHub\LiveCoding.Net\LiveCoding.Net\LiveCoding.Net\bin\Debug\Newtonsoft.Json.dll
+G:\GitHub\LiveCoding.Net\LiveCoding.Net\LiveCoding.Net\obj\Debug\LiveCoding.Net.csprojResolveAssemblyReference.cache
+G:\GitHub\LiveCoding.Net\LiveCoding.Net\LiveCoding.Net\obj\Debug\LiveCoding.Net.GUI.MainGUI.resources
+G:\GitHub\LiveCoding.Net\LiveCoding.Net\LiveCoding.Net\obj\Debug\LiveCoding.Net.GUI.StreamsGetUser.resources
+G:\GitHub\LiveCoding.Net\LiveCoding.Net\LiveCoding.Net\obj\Debug\LiveCoding.Net.Properties.Resources.resources
+G:\GitHub\LiveCoding.Net\LiveCoding.Net\LiveCoding.Net\obj\Debug\LiveCoding.Net.csproj.GenerateResource.Cache
+G:\GitHub\LiveCoding.Net\LiveCoding.Net\LiveCoding.Net\obj\Debug\LiveCoding.Net.exe
+G:\GitHub\LiveCoding.Net\LiveCoding.Net\LiveCoding.Net\obj\Debug\LiveCoding.Net.pdb
