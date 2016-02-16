@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{65186984-815A-4260-B55D-63BFE3E34608}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiveCoding.Net</RootNamespace>
     <AssemblyName>LiveCoding.Net</AssemblyName>
@@ -32,13 +32,21 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>LiveCoding.Net.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\Callum Carmicheal\Dropbox\Chaotic360 Main\Main Porject\New\Resources\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,8 +61,12 @@
     <Compile Include="API\Engine\APIEngine.cs" />
     <Compile Include="API\Engine\LiveCodingAPI.cs" />
     <Compile Include="API\Engine\APIResources.cs" />
-    <Compile Include="API\Engine\Notes.cs" />
+    <Compile Include="API\Engine\OAuth\IAuthResp.cs" />
+    <Compile Include="API\Engine\Random\Notes.cs" />
+    <Compile Include="API\Engine\OAuth\Engine.cs" />
     <Compile Include="API\Engine\WebEngine.cs" />
+    <Compile Include="API\Resources\ConAPI.cs" />
+    <Compile Include="API\Resources\Console.IO.cs" />
     <Compile Include="API\Wrappers\Coding\ICodingCategoryList.cs" />
     <Compile Include="API\Wrappers\Coding\ICodingCategory.cs" />
     <Compile Include="API\Wrappers\Languages\ILanguage.cs" />
@@ -63,6 +75,12 @@
     <Compile Include="API\Wrappers\Livestreams\ILiveStreamInfo.cs" />
     <Compile Include="API\Wrappers\Placeholder\JustAPlaceHolder.cs" />
     <Compile Include="API\Wrappers\Schema.cs" />
+    <Compile Include="GUI\GenerateCurl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\GenerateCurl.Designer.cs">
+      <DependentUpon>GenerateCurl.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\MainGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,8 +93,12 @@
     <Compile Include="GUI\StreamsGetUser.Designer.cs">
       <DependentUpon>StreamsGetUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="intPtr.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\GenerateCurl.resx">
+      <DependentUpon>GenerateCurl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainGUI.resx">
       <DependentUpon>MainGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +115,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="API\Class Diagrams\Engine.cd" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

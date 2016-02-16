@@ -1,0 +1,44 @@
+# The well Command
+curl https://www.livecoding.tv/o/authorize/?scope=read&state=46c3c39d-512a-4bd0-8d59-63d7c9732180&redirect_uri=http%3A%2F%2Flocalhost&response_type=code&client_id=SHXntSuQetY5VeQO4g1WvD05Y1oij2K1raU9MvML
+
+# The Broken Down Version
+curl 
+https://www.livecoding.tv/o/authorize/?						// URL
+scope=read&													// SCOPE TO API (READ ONLY)
+state=46c3c39d-512a-4bd0-8d59-63d7c9732180& 				// Generate a random GUID
+redirect_uri=localhost										// Redirect location
+response_type=code											// Response
+client_id=SHXntSuQetY5VeQO4g1WvD05Y1oij2K1raU9MvML			// Client id
+
+# The string.Format
+{0}?scope={1}&state={2}&redirect_uri={3}&response_type={4}&client_id={5}
+
+# Generated Test
+https://www.livecoding.tv/o/authorize/?
+scope=read&
+state=6b566232-0482-40c9-b298-7ab4a39cc162&
+redirect_uri=localhost&
+response_type=code&
+client_id=
+
+RESPONSE: Invalid URI
+Conclusion: Invalid URL -.-
+
+# Generated Test 2
+https://www.livecoding.tv/o/authorize/?
+scope=read&
+state=7c4efe4d-9f11-43bb-ba49-b960fef86c7e&
+redirect_uri=http%3%2F%2Fcallumcarmicheal.com%2FLiveCoding
+response_type=code&
+client_id=
+
+RESPONSE: Error 500
+Conclusion: Error occurs on the server
+
+# Manual Test 1
+https://www.livecoding.tv/o/authorize/?
+scope=read&
+state=56c3c39d-512a-4bd0-8d59-63d7c9732180&
+redirect_uri=http%3A%2F%2Flocalhost&
+response_type=code&
+client_id=

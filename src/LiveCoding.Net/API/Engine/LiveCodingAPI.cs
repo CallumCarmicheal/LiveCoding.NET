@@ -6,16 +6,41 @@ using System.Threading.Tasks;
 
 namespace LiveCoding.Net.API.Engine {
     class LiveCodingAPI {
-        private string _apiKey;
         private WebEngine _webEngine;
         private APIEngine _apiEngine;
 
-        public LiveCodingAPI(string APIKey) {
-            this._apiKey = APIKey;
+        private string _apiSessionKey = "";
+        public string _clientID; // TODO::MAKEPRIVATELATER->JUSTDOIT(bool *AMIGOINGTODOIT_OR_WILLINOT);
+        public string _clientSecret;
+
+        public LiveCodingAPI(string clientID, string clientSecret) {
+            _clientID = clientID;
+            _clientSecret = clientSecret;
 
             _webEngine = new WebEngine(this);
             _apiEngine = new APIEngine(this);
+
+
+            // Get Access Key
+            string str = OAuth.Engine.GetTokenFromID(this, _clientID, _clientSecret);
         }
+
+
+        /*public LiveCodingAPI(string APIKey, bool GetAsWebServer = false) {
+            _apiSessionKey = APIKey;
+            // Get API Access Key
+            if (GetAsWebServer) {
+                _apiToken = OAuth.Engine.GetToken(APIKey);
+                Resources.ConAPI.WriteLine(
+                    "Token Expires in: " + _apiToken.expires_in,
+                    true,
+                    "APIKey");
+            }
+
+
+            _webEngine = new WebEngine(this);
+            _apiEngine = new APIEngine(this);
+        }*/
 
         public WebEngine getWebEngine() {
             return this._webEngine;
@@ -25,8 +50,12 @@ namespace LiveCoding.Net.API.Engine {
             return this._apiEngine;
         }
 
-        public string getAPIKey() {
-            return _apiKey;
+        /*public OAuth.IAuthResp getAPISession() {
+            return this._apiSessionKey;
+        }*/
+
+        public string getAPISessionKey() {
+            return this._clientSecret;
         }
     }
 }

@@ -17,5 +17,9 @@ namespace LiveCoding.Net.GUI {
         private void button1_Click(object sender, EventArgs e) {
             new StreamsGetUser().Show();
         }
+
+        private void button2_Click(object sender, EventArgs e) {
+            new GenerateCurl().Show();
+        }
     }
 }

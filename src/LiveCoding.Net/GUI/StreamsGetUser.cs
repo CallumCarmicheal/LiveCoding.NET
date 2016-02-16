@@ -16,7 +16,7 @@ namespace LiveCoding.Net.GUI {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            string user = textBox1.Text;
+            string user = Username.Text;
             ILiveStreamInfo lsi = Program.livecodingAPI.getAPIEngine().getLiveStreamUser(user);
 
             richTextBox1.AppendText("url: " + lsi.url + "\n");

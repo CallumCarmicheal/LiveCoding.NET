@@ -23,9 +23,22 @@ namespace LiveCoding.Net.API.Engine {
             return engine;
         }
 
-        public string getReturnJSON(string link) {
-            return client.DownloadString("https://www.livecoding.tv:443/" + link);
+        public void SetupSession() {
+            client.Headers.Clear();
+            Console.WriteLine("API::Engine::WebEngine -> Cleared Headers");
+
+            client.Headers.Add("Authorization: Bearer " + engine.getAPISessionKey());
+            Console.WriteLine("API::Engine::WebEngine -> Set Authorization to Bearer");
+            Console.WriteLine("API::Engine::WebEngine -> Set Secret [7] = " + engine.getAPISessionKey().Substring(0, 6));
         }
 
+        public string getReturnJSON(string link) {
+            SetupSession();
+
+            string compiledLocation = "https://www.livecoding.tv/" + link;
+
+            Console.WriteLine("API::Engine::WebEngine -> Compiled Web Location = " + compiledLocation);
+            return client.DownloadString(compiledLocation);
+        }
     }
 }

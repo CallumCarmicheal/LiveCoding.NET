@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LiveCoding.Net.API.Engine {
+namespace LiveCoding.Net.API.Engine.Random {
     class Notes {
         /* 
         This is practically just a text document for the inner engine
