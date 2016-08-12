@@ -18,7 +18,7 @@
 				'Error_Message' => 'GUID does not exist!'
 			));
 		} else {
-			$response = json_encode( array ( 'code' => $GUID['token']; ) );
+			$response = json_encode( array ( 'Token' => $GUID['token'] ) );
 		}
 	}
 	
