@@ -4,81 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using LiveCodingTV.Server.Models;
 using Newtonsoft.Json;
 
 using static LiveCodingTV.Server.APISetupResponse;
 
 namespace LiveCodingTV.Server {
-    class APISetupResponse {
-        public class MODEL_Request_Response {
-            public string GUID;
-            public string URL;
-
-            public bool Error;
-            public string Error_Message;
-        }
-
-        public class MODEL_Request_Token {
-            public string Token;
-
-            public bool   Error;
-            public string Error_Message;
-        }
-
-        public enum GUID_Status {
-            STATE_ID_NOTFOUND       = 1,   // Not made or is invalid!
-            STATE_ID_NOTYETVALID    = 2,   // Created but waiting for response
-            STATE_ID_VALID          = 3    // VALID
-        }
-
-        public class MODEL_GUID_Status {
-            public GUID_Status  state;
-
-            public bool         Error;
-            public string       Error_Message;
-        }
-
-        public class Request_API_STATE {
-            public Request_API_STATE(string guid) {
-                _GUID = guid;
-            }
-
-            private string _GUID;
-            public string GUID { get { return _GUID; } }
-
-            private bool _Expired = false;
-            private bool _Valid = false;
-            private bool _Cancel = false;
-
-
-            public bool isValid()       { return _Valid; }
-            public bool isExpired()     { return _Expired; }
-            public bool isCancelled()   { return _Cancel; }
-
-            public void Cancel()        { _Cancel = true; }
-        }
-
-        public enum ResponseState {
-            ERROR,
-            TIMEOUT,
-            RETURN, // Used when the application does not wait to check!
-            EXPIRED,
-            SUCCESS
-        }
-
-
-        private ResponseState state;
-        private string Message;
-
-        public ResponseState getState() { return this.state;   }
-        public string getMessage()      { return this.Message; }
-        
-        public APISetupResponse(ResponseState st, string Message) {
-            this.Message = Message;
-            this.state = st;
-        }
-    }
-    
     class Request {
         private ServResources servRes;
         public  ServResources getServerResources() { return this.servRes; }
@@ -113,8 +44,6 @@ namespace LiveCodingTV.Server {
             _URL = obj.URL;
             return obj;
         }
-
-
         
         // TODO: CREATE SOME TYPE OF CALLBACK SYSTEM
         public void SetupAPIRequest_ASYNC() { }
@@ -137,25 +66,25 @@ namespace LiveCodingTV.Server {
                 if(dt > dtExp) {
                     // Our request has expired for the user
                     // We want to cancel and exit the thread
-                    return new APISetupResponse(APISetupResponse.ResponseState.TIMEOUT, "Timeout reached!");
+                    return new APISetupResponse(ResponseState.TIMEOUT, "Timeout reached!");
                 }
 
                 // Contact server to check if the 
                 var resp = getGUIDState();
 
                 if(resp == GUID_Status.STATE_ID_VALID) 
-                    return new APISetupResponse(APISetupResponse.ResponseState.SUCCESS, "Token was authenticated!");
+                    return new APISetupResponse(ResponseState.SUCCESS, "Token was authenticated!");
                 else if (resp == GUID_Status.STATE_ID_NOTFOUND) {
                     exit = false;
                     goto GenerateNewGUID;
                 }
 
                 if(!WaitUntilValid)
-                    return new APISetupResponse(APISetupResponse.ResponseState.RETURN, "Returned, Use your own code to check if the guid is correct!!!");
+                    return new APISetupResponse(ResponseState.RETURN, "Returned, Use your own code to check if the guid is correct!!!");
 
                 // Keep waiting
                 System.Threading.Thread.Sleep(WaitTimeOutMS);
-            } return new APISetupResponse(APISetupResponse.ResponseState.ERROR, "No response from catches!");
+            } return new APISetupResponse(ResponseState.ERROR, "No response from catches!");
         }
     }
 }

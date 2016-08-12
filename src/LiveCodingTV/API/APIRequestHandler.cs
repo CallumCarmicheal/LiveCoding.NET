@@ -29,8 +29,7 @@ namespace LiveCodingTV.API {
             using (response)
             using (var reader = new StreamReader(response.GetResponseStream()))
                 responseJSON = reader.ReadToEnd();
-
-
+            
             if (formatted)
                  return FormatJson(responseJSON);
             else return responseJSON;

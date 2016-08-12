@@ -12,7 +12,6 @@ namespace LiveCodingTV.Server {
 
         private string LOCATION_APP               = ""; // http://callumcarmicheal.com/LCAPI/
 
-
         public string LOCATION_APP_API           { get { return LOCATION_APP + "apiApp.php"; } }
         public string LOCATION_APP_GUID_CHECK    { get { return LOCATION_APP + "apiCheckGUID.php"; } }
         public string LOCATION_APP_TOKEN_REFRESH { get { return LOCATION_APP + "apiRefreshToken.php"; } }

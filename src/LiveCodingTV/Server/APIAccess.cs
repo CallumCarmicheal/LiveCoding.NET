@@ -4,28 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using LiveCodingTV.Server.Models;
 using Newtonsoft.Json;
 
 namespace LiveCodingTV.Server {
-
-
     class APIAccess {
-        public class MODEL_Refresh_Response {
-            public enum Status {
-                ERROR = 0, // RUN FoR THE HILLS!
-                SUCCESS = 1
-            }
-
-            public Status status;
-        }
-
-        public class MODEL_Bearer_Response {
-            public string Token;
-
-            public bool   Error;
-            public string Error_Message;
-        }
-
         WebClient wc = new WebClient();
         public Request req;
 
@@ -41,7 +24,7 @@ namespace LiveCodingTV.Server {
         }
 
         public bool isValid() {
-            if (req.getGUIDState() != APISetupResponse.GUID_Status.STATE_ID_VALID)
+            if (req.getGUIDState() != GUID_Status.STATE_ID_VALID)
                 return false;
 
             // TODO: Do a test on a light weight api element
@@ -62,14 +45,14 @@ namespace LiveCodingTV.Server {
             return obj;
         }
 
-        public APITokenRefresh RefreshToken() {
+        public MODEL_Refresh_TOKEN RefreshToken() {
             // Check if a refresh is really required!
-            if (isValid()) return new APITokenRefresh() { status = APITokenRefresh.State.Success, message = "Everything works fine, your just crazy!" };
+            if (isValid()) return new MODEL_Refresh_TOKEN() { status = MODEL_Refresh_TOKEN.State.Success, message = "Everything works fine, your just crazy!" };
 
             // Check if the guid as expired
             var state = req.getGUIDState();
-            if(state == APISetupResponse.GUID_Status.STATE_ID_NOTFOUND) 
-                return new APITokenRefresh() { status = APITokenRefresh.State.Remake, message = "The token and guid have expired," };
+            if(state == GUID_Status.STATE_ID_NOTFOUND) 
+                return new MODEL_Refresh_TOKEN() { status = MODEL_Refresh_TOKEN.State.Remake, message = "The token and guid have expired," };
 
             // Attempt to refresh the token!
             string  url = req.getServerResources().LOCATION_APP_TOKEN_REFRESH;
@@ -78,8 +61,8 @@ namespace LiveCodingTV.Server {
             var     obj = JsonConvert.DeserializeObject<MODEL_Refresh_Response>(json);
 
             if (obj.status == MODEL_Refresh_Response.Status.SUCCESS)
-                 return new APITokenRefresh() { status = APITokenRefresh.State.Success, message = "Everything went swell!" };
-            else return new APITokenRefresh() { status = APITokenRefresh.State.Retry, message = "There was a problem refreshing your token!" };
+                 return new MODEL_Refresh_TOKEN() { status = MODEL_Refresh_TOKEN.State.Success, message = "Everything went swell!" };
+            else return new MODEL_Refresh_TOKEN() { status = MODEL_Refresh_TOKEN.State.Retry, message = "There was a problem refreshing your token!" };
         }
 
     }

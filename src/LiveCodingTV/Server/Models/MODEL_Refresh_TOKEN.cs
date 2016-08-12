@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LiveCodingTV.Server {
 
-    class APITokenRefresh {
+    class MODEL_Refresh_TOKEN {
         public enum State {
             Remake,  // Just remake the Request and start over (For reasons...)
             Success, // Everything went well.
