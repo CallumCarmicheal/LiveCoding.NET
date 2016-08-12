@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveCoding.TV .NET API Wrap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveCoding.Net", "..\old\src\LiveCoding.Net\LiveCoding.Net.csproj", "{65186984-815A-4260-B55D-63BFE3E34608}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestApplication\TestApplication.csproj", "{3FBDD3A0-0020-4FEA-BB02-BD32CBEDB2AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{65186984-815A-4260-B55D-63BFE3E34608}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65186984-815A-4260-B55D-63BFE3E34608}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65186984-815A-4260-B55D-63BFE3E34608}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FBDD3A0-0020-4FEA-BB02-BD32CBEDB2AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FBDD3A0-0020-4FEA-BB02-BD32CBEDB2AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FBDD3A0-0020-4FEA-BB02-BD32CBEDB2AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FBDD3A0-0020-4FEA-BB02-BD32CBEDB2AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

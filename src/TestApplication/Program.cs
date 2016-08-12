@@ -1,22 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+
 using LiveCodingTV.API;
 using LiveCodingTV.Server;
-using static LiveCodingTV.Program;
 using LiveCodingTV.Server.Models;
 
-namespace LiveCodingTV.Tests {
-    class GetUserInfo {
+namespace TestApplication {
+    class Program {
 
-        public void consoleHeavyVersion(string user) {
+        // This is a getting started project,
+        // it will be updated overtime as methods get changed etc.
+        // As of current (12/08/16 23:37) the json responses have not
+        // been wrapped so for now all that is returned is json!
+        
+        public static void ConColB(ConsoleColor c) { Console.BackgroundColor = c; }
+        public static void ConColF(ConsoleColor c) { Console.ForegroundColor = c; }
+        public static void ConColFB(ConsoleColor f, ConsoleColor b) {
+            Console.ForegroundColor = f; Console.BackgroundColor = b;
+        } public static void ConColBF(ConsoleColor b, ConsoleColor f) { ConColFB(f, b); }
+
+        static void Main(string[] args) {
+            string testUser = "callumc";
+
             Console.WriteLine("Creating Object!");
 
-            var serverAPIURL = "http://callumcarmicheal.com/LCAPI/"; 
+            var serverAPIURL = "<LINK TO WHERE YOU UPLOADED AND SETUP THE PHP SCRIPT>";
             Request apiRequest = new Request(new ServResources(serverAPIURL));
 
             Console.WriteLine("Requesting a GUID!");
@@ -98,62 +109,10 @@ namespace LiveCodingTV.Tests {
 
             oAuthAuth oaCreds = new oAuthAuth(apiToken.Token);
             var aReq = new APIRequestHandler();
-            var jsonString = aReq.getAPIJson(APIResources.getUser(user), oaCreds, true);
+            var jsonString = aReq.getAPIJson(APIResources.getUser(testUser), oaCreds, true);
 
             Console.WriteLine("JSON STRING: ");
-                Console.WriteLine(jsonString);
-            Console.ReadKey();
-        }
-
-        public void simpleVersion(string user) {
-            var serverAPIURL     = "http://callumcarmicheal.com/LCAPI/";
-            Request apiRequest   = new Request(new ServResources(serverAPIURL));
-
-            var guidReqResponse  = apiRequest.getNewGUID();
-            var apiSetupResponse = apiRequest.SetupAPIRequest(false); // When using our own checking method, we just check to see if its "RETURN"
-
-            if (apiSetupResponse.getState() != ResponseState.RETURN) {
-                Console.WriteLine("Unexpected Response (" + apiSetupResponse.getState().ToString() + "): " + apiSetupResponse.getMessage());
-                Console.ReadKey(); return;
-            }
-
-            // Get our token state
-            GUID_Status guidStatus;
-            Console.WriteLine("Calling API To Check Token!");
-
-            int i = 0;
-            while (true) {
-                // Now we play the waiting game!
-                // Check our GUID State
-                guidStatus = apiRequest.getGUIDState();
-
-                if (guidStatus == GUID_Status.STATE_ID_VALID) {
-                    Console.WriteLine("Token recieved.");
-                    break;
-                }
-
-                // Wait 0.5 seconds before checking for a token!
-                System.Threading.Thread.Sleep(500);
-
-                if (++i <= 20) Console.WriteLine("Still waiting for token.");
-                i = (i <= 20 ? 0 : i);
-            }
-
-            var apiAccess = new APIAccess(apiRequest);
-            var apiToken = apiAccess.getBearerCode();
-
-            if (apiToken.Error) {
-                Console.WriteLine("Failed to get token from api.");
-                Console.WriteLine("EMsg: " + apiToken.Error_Message);
-                Console.ReadKey(); return;
-            }
-
-            oAuthAuth oaCreds   = new oAuthAuth(apiToken.Token);
-            var aReq            = new APIRequestHandler();
-            var jsonString      = aReq.getAPIJson(APIResources.getUser(user), oaCreds);
-
-            Console.WriteLine("JSON STRING: ");
-                Console.WriteLine(jsonString);
+            Console.WriteLine(jsonString);
             Console.ReadKey();
         }
     }

@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using static LiveCodingTV.Server.APISetupResponse;
 
 namespace LiveCodingTV.Server {
-    class Request {
+    public class Request {
         private ServResources servRes;
         public  ServResources getServerResources() { return this.servRes; }
 

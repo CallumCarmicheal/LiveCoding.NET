@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LiveCodingTV.API {
-    class APIResources {
+    public class APIResources {
         // OA = OnAir
         
         public static string

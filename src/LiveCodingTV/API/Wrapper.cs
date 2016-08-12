@@ -8,7 +8,7 @@ using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
 
 namespace LiveCodingTV.API {
-    class Wrapper {
+    public class Wrapper {
 
         public Wrapper(JObject response) {
 

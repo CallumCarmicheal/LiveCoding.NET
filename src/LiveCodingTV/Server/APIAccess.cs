@@ -8,7 +8,7 @@ using LiveCodingTV.Server.Models;
 using Newtonsoft.Json;
 
 namespace LiveCodingTV.Server {
-    class APIAccess {
+    public class APIAccess {
         WebClient wc = new WebClient();
         public Request req;
 

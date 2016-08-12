@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LiveCodingTV.API {
 
     // List of the wanted APICall
-    enum APICall {
+    public enum APICall {
         // Application
         Error,
         
@@ -47,7 +47,7 @@ namespace LiveCodingTV.API {
         Videos
     }
 
-    class Engine {
+    public class Engine {
         private Server.Request req;
 
 

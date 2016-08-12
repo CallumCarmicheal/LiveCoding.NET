@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using LiveCodingTV.Server.Models;
 
 namespace LiveCodingTV.Server {
-    class APISetupResponse {
+    public class APISetupResponse {
         private ResponseState state;
         private string Message;
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LiveCodingTV.Server {
-    class ServResources {
+    public class ServResources {
         public ServResources(string apiLocation) {
             LOCATION_APP = apiLocation;
         }

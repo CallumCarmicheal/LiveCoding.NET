@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace LiveCodingTV.API {
-    class APIRequestHandler {
+    public class APIRequestHandler {
         private static string FormatJson(string json) {
             dynamic parsedJson = JsonConvert.DeserializeObject(json);
             return JsonConvert.SerializeObject(parsedJson, Formatting.Indented);

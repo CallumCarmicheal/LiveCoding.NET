@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LiveCodingTV.API {
-    class APIResponse {
+    public class APIResponse {
 
         public APIResponse(APICall called, object Response) { }
     }
