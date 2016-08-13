@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LiveCodingTV.API.Wrappers;
+using LiveCodingTV.API.Wrappers.Models;
 
 namespace LiveCodingTV.API {
 
@@ -48,16 +50,53 @@ namespace LiveCodingTV.API {
     }
 
     public class Engine {
-        private Server.Request req;
+        APIRequestHandler aReq = new APIRequestHandler();
+        oAuthAuth         oaCreds;
+        Serializer        ser = new Serializer();
 
-
-        public Engine(Server.Request request) {
-            this.req = request;
+        public Engine(oAuthAuth token) {
+            this.oaCreds = token;
         }
 
 
-        public void CreateAPICall(APICall request) {
+        public IUser getCurrentUser() {
+            var jsonString = aReq.getAPIJson(APIResources.User, oaCreds, true);
 
+            IUser obj;
+            var state      = ser.toUser(jsonString, out obj);
+            if (state.Error)
+                 return null;
+            else return obj;
+        }
+
+        public IUser getUser(string user) {
+            var jsonString = aReq.getAPIJson($"{APIResources.Users}{user}/", oaCreds, true);
+
+            IUser obj;
+            var state = ser.toUser(jsonString, out obj);
+            if (state.Error)
+                 return null;
+            else return obj;
+        }
+
+        public ILivestreamList getLivestreamsFromURL(string url) {
+            var jsonString = aReq.getAPIJson(url, oaCreds, true);
+
+            ILivestreamList obj;
+            var state = ser.toLivestreams(jsonString, out obj);
+            if (state.Error)
+                 return null;
+            else return obj;
+        }
+
+        public ILivestreamList getLivestreamsOnAIR() {
+            var jsonString = aReq.getAPIJson(APIResources.LivestreamsOA, oaCreds, true);
+
+            ILivestreamList obj;
+            var state = ser.toLivestreams(jsonString, out obj);
+            if (state.Error)
+                 return null;
+            else return obj;
         }
     }
 }

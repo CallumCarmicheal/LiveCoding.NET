@@ -1,27 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+
 using LiveCodingTV.API;
 using LiveCodingTV.Server;
-using static LiveCodingTV.Program;
 using LiveCodingTV.Server.Models;
+using LiveCodingTV.API.Wrappers.Models;
 
-namespace LiveCodingTV.Tests {
-    class GetUserInfo {
+namespace Console_GetUserInformation {
+    class Program {
 
-        public void consoleHeavyVersion(string user) {
+        // This is a getting started project,
+        // it will be updated overtime as methods get changed etc.
+        // As of current (12/08/16 23:37) the json responses have not
+        // been wrapped so for now all that is returned is json!
+        //
+        // As of (13/08/16 01:06) there is a few wrappers, to call them use
+        // the serializer as shown below!
+        
+        public static void ConColB(ConsoleColor c) { Console.BackgroundColor = c; }
+        public static void ConColF(ConsoleColor c) { Console.ForegroundColor = c; }
+        public static void ConColFB(ConsoleColor f, ConsoleColor b) {
+            Console.ForegroundColor = f; Console.BackgroundColor = b;
+        } public static void ConColBF(ConsoleColor b, ConsoleColor f) { ConColFB(f, b); }
+
+        public static void ConPrintCol(string left, string right, ConsoleColor cl = ConsoleColor.White, ConsoleColor cr = ConsoleColor.Yellow) {
+            left = left.PadRight(20);
+
+            var tmp = Console.ForegroundColor;
+            ConColF(cl);        Console.Write(left);
+            ConColF(cr);        Console.WriteLine(right);
+
+            ConColF(tmp);
+        }
+
+        static void Main(string[] args) {
+            ConsoleOnlyTest();
+        }
+
+        static void ConsoleOnlyTest() {
+            string testUser = "callumc";
+
             Console.WriteLine("Creating Object!");
 
-            var serverAPIURL = "http://callumcarmicheal.com/LCAPI/"; 
+            var serverAPIURL = "http://callumcarmicheal.com/LCAPI/"; // LINK TO WHERE YOU UPLOADED AND SETUP THE PHP SCRIPT
             Request apiRequest = new Request(new ServResources(serverAPIURL));
 
             Console.WriteLine("Requesting a GUID!");
             var guidReqResponse = apiRequest.getNewGUID();
 
+            // Print our information from the guidReqResponse
             Console.WriteLine("Recieved Object Back!");
             Console.WriteLine("Guid:   " + guidReqResponse.GUID);
             Console.WriteLine("Url:    " + guidReqResponse.URL);
@@ -98,62 +128,38 @@ namespace LiveCodingTV.Tests {
 
             oAuthAuth oaCreds = new oAuthAuth(apiToken.Token);
             var aReq = new APIRequestHandler();
-            var jsonString = aReq.getAPIJson(APIResources.getUser(user), oaCreds, true);
-
+            var jsonString = aReq.getAPIJson(APIResources.getUser(testUser), oaCreds, true);
+            
             Console.WriteLine("JSON STRING: ");
-                Console.WriteLine(jsonString);
-            Console.ReadKey();
-        }
+                Console.WriteLine(jsonString + "\n\n");
 
-        public void simpleVersion(string user) {
-            var serverAPIURL     = "http://callumcarmicheal.com/LCAPI/";
-            Request apiRequest   = new Request(new ServResources(serverAPIURL));
+            Console.Write("Attempting to serialize json: "); {
+                var ser = new LiveCodingTV.API.Wrappers.Serializer();
 
-            var guidReqResponse  = apiRequest.getNewGUID();
-            var apiSetupResponse = apiRequest.SetupAPIRequest(false); // When using our own checking method, we just check to see if its "RETURN"
+                IUser user = new IUser();
 
-            if (apiSetupResponse.getState() != ResponseState.RETURN) {
-                Console.WriteLine("Unexpected Response (" + apiSetupResponse.getState().ToString() + "): " + apiSetupResponse.getMessage());
-                Console.ReadKey(); return;
-            }
+                var state = ser.toUser(jsonString, out user);
 
-            // Get our token state
-            GUID_Status guidStatus;
-            Console.WriteLine("Calling API To Check Token!");
-
-            int i = 0;
-            while (true) {
-                // Now we play the waiting game!
-                // Check our GUID State
-                guidStatus = apiRequest.getGUIDState();
-
-                if (guidStatus == GUID_Status.STATE_ID_VALID) {
-                    Console.WriteLine("Token recieved.");
-                    break;
+                if(state.Error) {
+                    ConColF(ConsoleColor.Red);
+                    Console.WriteLine("Error.");
+                    Console.WriteLine("EMsg: " + state.Exception.Message);
+                    Console.ReadKey(); return;
                 }
 
-                // Wait 0.5 seconds before checking for a token!
-                System.Threading.Thread.Sleep(500);
+                // Set the console color and print Success
+                ConColF(ConsoleColor.Green);
+                    Console.WriteLine("Success");
+                ConColF(ConsoleColor.DarkMagenta);
 
-                if (++i <= 20) Console.WriteLine("Still waiting for token.");
-                i = (i <= 20 ? 0 : i);
-            }
+                Console.WriteLine("============================\tUser Information");
 
-            var apiAccess = new APIAccess(apiRequest);
-            var apiToken = apiAccess.getBearerCode();
+                // Print some information about the user
+                ConPrintCol("Username", user.Username);
+                ConPrintCol("Country",  user.Country);
+                ConPrintCol("FCode",    user.FavoriteLineOfCode);
+            } 
 
-            if (apiToken.Error) {
-                Console.WriteLine("Failed to get token from api.");
-                Console.WriteLine("EMsg: " + apiToken.Error_Message);
-                Console.ReadKey(); return;
-            }
-
-            oAuthAuth oaCreds   = new oAuthAuth(apiToken.Token);
-            var aReq            = new APIRequestHandler();
-            var jsonString      = aReq.getAPIJson(APIResources.getUser(user), oaCreds);
-
-            Console.WriteLine("JSON STRING: ");
-                Console.WriteLine(jsonString);
             Console.ReadKey();
         }
     }

@@ -26,12 +26,7 @@ namespace LiveCodingTV {
         /// </summary>
         [STAThread]
         static void Main() {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
-            Tests.GetUserInfo gui = new Tests.GetUserInfo();
-            gui.consoleHeavyVersion("iprocessor"); // ;)
-
+            
         }
     }
 }

@@ -97,16 +97,13 @@
     <Compile Include="Server\ServResources.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\GetUserInfo.cs" />
-    <Compile Include="Wrappers\Coding\ICodingCategory.cs" />
-    <Compile Include="Wrappers\Coding\ICodingCategoryList.cs" />
-    <Compile Include="Wrappers\IAuthResponse.cs" />
-    <Compile Include="Wrappers\Languages\ILanguage.cs" />
-    <Compile Include="Wrappers\Languages\ILanguageList.cs" />
-    <Compile Include="Wrappers\Livestreams\ILiveStreamInfo.cs" />
-    <Compile Include="Wrappers\Livestreams\ILiveStreamsList.cs" />
-    <Compile Include="Wrappers\Placeholder\JustAPlaceHolder.cs" />
-    <Compile Include="Wrappers\Schema.cs" />
+    <Compile Include="API\Wrappers\Models\ICodingCategory.cs" />
+    <Compile Include="API\Wrappers\IAPIResponse.cs" />
+    <Compile Include="API\Wrappers\Models\ILanguage.cs" />
+    <Compile Include="API\Wrappers\Models\ILivestreamInfo.cs" />
+    <Compile Include="API\Wrappers\Models\IUser.cs" />
+    <Compile Include="API\Wrappers\Schema.cs" />
+    <Compile Include="API\Wrappers\Serializer.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

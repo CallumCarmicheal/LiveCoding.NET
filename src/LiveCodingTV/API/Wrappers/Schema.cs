@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LiveCodingTV.Models.Wrappers {
+namespace LiveCodingTV.API.Wrappers {
     class Schema {
         public static string
             ILiveStreamInfo = @"

@@ -7,8 +7,8 @@
     <ProjectGuid>{3FBDD3A0-0020-4FEA-BB02-BD32CBEDB2AB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestApplication</RootNamespace>
-    <AssemblyName>TestApplication</AssemblyName>
+    <RootNamespace>Console_GetUserInformation</RootNamespace>
+    <AssemblyName>Console_GetUserInformation</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -35,6 +35,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,11 +53,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LiveCodingTV\LiveCoding.TV .NET API Wrapper.csproj">
+    <ProjectReference Include="..\..\LiveCodingTV\LiveCoding.TV .NET API Wrapper.csproj">
       <Project>{36c8bf1d-9f44-4461-870e-6951dfa43dd8}</Project>
       <Name>LiveCoding.TV .NET API Wrapper</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

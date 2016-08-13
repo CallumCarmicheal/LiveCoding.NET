@@ -27,6 +27,8 @@ namespace LiveCodingTV.API {
             UserVideos          = User          + "livestreams/videos/",
             UserVideosLatest    = User          + "livestreams/videos/latest/",
 
+            Users               = APIBasePath + "users/",
+
             PublicUserInfo      = APIBasePath   + "users/",
             Videos              = APIBasePath   + "videos/";
 

@@ -15,16 +15,18 @@ namespace LiveCodingTV.API {
         }
 
         public string getAPIJson(string apiReqURL, oAuthAuth oaCreds, bool formatted = false) {
-            HttpWebRequest timeLineRequest =
+            HttpWebRequest apiRequest =
                 (HttpWebRequest)WebRequest.Create(apiReqURL);
 
             var apiReqHeaders = "{0} {1}";
-            timeLineRequest.Headers.Add("Authorization",
+            apiRequest.Headers.Add("Authorization",
                 string.Format(apiReqHeaders, oaCreds.token_type, oaCreds.access_token));
 
-            timeLineRequest.Method = "Get";
+            apiRequest.Method = "Get";
 
-            WebResponse response = timeLineRequest.GetResponse();
+
+
+            WebResponse response = apiRequest.GetResponse();
             var responseJSON = string.Empty;
             using (response)
             using (var reader = new StreamReader(response.GetResponseStream()))
