@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console -GetUserInformation
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2938F69F-DDF4-4A54-8055-E388FCAB8B28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForms - Implementing A GUI", "WinForms_GetUserInformation\WinForms - Implementing A GUI.csproj", "{5BC09953-B2B7-4200-A8B2-EDBD36BAD770}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForms - Implementing A GUI", "Tests\WinForms_GetUserInformation\WinForms - Implementing A GUI.csproj", "{5BC09953-B2B7-4200-A8B2-EDBD36BAD770}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

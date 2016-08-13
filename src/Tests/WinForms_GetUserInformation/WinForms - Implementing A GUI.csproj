@@ -121,7 +121,7 @@
     <None Include="Resources\logo-white-alt.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LiveCodingTV\LiveCoding.TV .NET API Wrapper.csproj">
+    <ProjectReference Include="..\..\LiveCodingTV\LiveCoding.TV .NET API Wrapper.csproj">
       <Project>{36c8bf1d-9f44-4461-870e-6951dfa43dd8}</Project>
       <Name>LiveCoding.TV .NET API Wrapper</Name>
     </ProjectReference>
