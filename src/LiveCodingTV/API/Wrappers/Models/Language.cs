@@ -7,9 +7,45 @@ using Newtonsoft.Json;
 using static LiveCodingTV.API.Wrappers.Serializer;
 
 namespace LiveCodingTV.API.Wrappers.Models {
+
+    public enum LanguageDifficulty {
+        Beginner,
+        Intermediate,
+        Expert,
+        Unknown
+    }
+
+    public class LanguageHelper {
+        public static LanguageDifficulty toLD(string dif) {
+            // There maybe more so im keeping it like this!
+            string[]
+                t_Beginner = {
+                    "beginner"
+                },
+
+                t_Intermediate = {
+                    "intermediate"
+                },
+
+                t_Expert = {
+                    "expert"
+                };
+
+
+            dif = dif.ToLower();
+            if (t_Beginner.Contains(dif))
+                 return LanguageDifficulty.Beginner;
+            else if (t_Intermediate.Contains(dif))
+                 return LanguageDifficulty.Intermediate;
+            else if (t_Intermediate.Contains(dif))
+                 return LanguageDifficulty.Expert;
+            else return LanguageDifficulty.Unknown;
+        }
+    }
+
     /**
         JSON Schema:
-            ILanguageList {
+            SiteLanguagesSerializer {
                 name    (string),
                 url     (string)
             }
@@ -24,7 +60,7 @@ namespace LiveCodingTV.API.Wrappers.Models {
             Name    - Language Name
             URL     - Language URL
      */
-    public class ILanguage {
+    public class Language {
         public string
             name,
             url;
@@ -32,7 +68,7 @@ namespace LiveCodingTV.API.Wrappers.Models {
 
     /**
         JSON Schema:
-            ILanguageList {
+            SiteLanguagesSerializer {
                 count       (string),
                 next        (string),
                 previous    (string),
@@ -53,14 +89,6 @@ namespace LiveCodingTV.API.Wrappers.Models {
             Previous    - The link to query the previous set of the requested feature
             Results     - A array of the requested feature used on LiveCoding.tv
      */
-    public class ILanguageList : IAPIResponseList {
-        public ILanguage[] Languages {
-            get {
-                string json = results.ToString();
-                var set = new JsonSerializerSettings() { ContractResolver = new MyContractResolver() };
-                var objs = JsonConvert.DeserializeObject<ILanguage[]>(json, set);
-                return objs;
-            }
-        }
-    }
+    // TODO: Get next and previous!
+    public class LanguageList : APIResponseList<Language> { }
 }

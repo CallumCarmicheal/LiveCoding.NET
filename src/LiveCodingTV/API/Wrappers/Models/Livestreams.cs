@@ -9,7 +9,7 @@ using static LiveCodingTV.API.Wrappers.Serializer;
 namespace LiveCodingTV.API.Wrappers.Models {
     /**
         JSON Schema:
-            ILivestream  {
+            LiveStreamSerializer {
                 url (string),
                 user (string),
                 user__slug (string),
@@ -55,7 +55,7 @@ namespace LiveCodingTV.API.Wrappers.Models {
             Viewers Live    - The amount of viewers currently on the stream
             Viewing URLS    - Urls to view/buffer the livestream from ????
      */
-    public class ILivestream {
+    public class Livestream : APIResponse {
         string
             url,
             user,
@@ -74,24 +74,24 @@ namespace LiveCodingTV.API.Wrappers.Models {
         int
             viewers_live;
 
-        public string   URL                 { get { return this.url;                                                } }
-        public string   Username            { get { return this.user;                                               } }
-        public string   Slug                { get { return this.user__slug;                                         } }
-        public string   Title               { get { return this.title;                                              } }
-        public string   Description         { get { return this.description;                                        } }
-        public string   CodingCategory      { get { return (this.coding_category == null ? "": coding_category);    } }
-        public string   Difficulty          { get { return this.difficulty;                                         } }
-        public string   Langauge            { get { return this.langauge;                                           } }
-        public string   Tags                { get { return this.tags;                                               } }
-        public string[] ViewingUrls         { get { return this.viewing_urls;                                       } }
-        public string   ThumbnailURL        { get { return this.thumbnail_url;                                      } }
-        public bool     IsLive              { get { return this.is_live;                                            } }
-        public int      ViewerCount         { get { return this.viewers_live;                                       } }
+        public string               URL                 { get { return this.url;                                                } }
+        public string               Username            { get { return this.user;                                               } }
+        public string               Slug                { get { return this.user__slug;                                         } }
+        public string               Title               { get { return this.title;                                              } }
+        public string               Description         { get { return this.description;                                        } }
+        public string               CodingCategory      { get { return (this.coding_category == null ? "": coding_category);    } }
+        public string               Langauge            { get { return this.langauge;                                           } }
+        public string               Tags                { get { return this.tags;                                               } }
+        public string[]             ViewingUrls         { get { return this.viewing_urls;                                       } }
+        public string               ThumbnailURL        { get { return this.thumbnail_url;                                      } }
+        public bool                 IsLive              { get { return this.is_live;                                            } }
+        public int                  ViewerCount         { get { return this.viewers_live;                                       } }
+        public LanguageDifficulty   Difficulty          { get { return LanguageHelper.toLD(this.difficulty);                    } }
     }
 
     /**
         JSON Schema:
-            ILivestream : IAuthResponseList {
+            LiveStreamSerializer {
                 count       (string),
                 next        (string),
                 previous    (string),
@@ -112,21 +112,12 @@ namespace LiveCodingTV.API.Wrappers.Models {
             Previous    - The link to query the previous set of the requested feature
             Results     - A array of the requested feature used on LiveCoding.tv
      */
-    public class ILivestreamList : IAPIResponseList {
-        public ILivestream[] Livestreams {
-            get {
-                string json = results.ToString();
-                var set = new JsonSerializerSettings() { ContractResolver = new MyContractResolver() };
-                var objs = JsonConvert.DeserializeObject<ILivestream[]>(json, set);
-                return objs;
-            }
-        }
-
-        public ILivestreamList GetNext(Engine eng) {
+    public class LivestreamList : APIResponseList<Livestream> {
+        public LivestreamList GetNext(Engine eng) {
             return eng.getLivestreamsFromURL(next);
         }
 
-        public ILivestreamList GetPrevious(Engine eng) {
+        public LivestreamList GetPrevious(Engine eng) {
             return eng.getLivestreamsFromURL(previous);
         }
     }

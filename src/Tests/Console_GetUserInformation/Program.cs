@@ -136,7 +136,7 @@ namespace Console_GetUserInformation {
             Console.Write("Attempting to serialize json: "); {
                 var ser = new LiveCodingTV.API.Wrappers.Serializer();
 
-                IUser user = new IUser();
+                User user = new User();
 
                 var state = ser.toUser(jsonString, out user);
 
@@ -157,7 +157,7 @@ namespace Console_GetUserInformation {
                 // Print some information about the user
                 ConPrintCol("Username", user.Username);
                 ConPrintCol("Country",  user.Country);
-                ConPrintCol("FCode",    user.FavoriteLineOfCode);
+                ConPrintCol("Fav Line",    user.FavoriteLineOfCode);
             } 
 
             Console.ReadKey();

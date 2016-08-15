@@ -10,10 +10,10 @@ namespace LiveCodingTV.API.Wrappers.Models {
     /**
 
         JSON Schema:
-            ICodingCategory {
-                url (string),
-                name (string),
-                sort (integer)
+            CodingCategoriesSerializer {
+                url     (string),
+                name    (string),
+                sort    (integer)
             }
 
         JSON Result:
@@ -26,9 +26,9 @@ namespace LiveCodingTV.API.Wrappers.Models {
         Description:
             URL     - Url link to the coding category 
             Name    - Name of the coding category
-            Sort    - ????
+            Sort    - ID?
      */
-    public class ICodingCategory {
+    public class CodingCategory {
         public string
             url,
             name;
@@ -38,7 +38,7 @@ namespace LiveCodingTV.API.Wrappers.Models {
 
     /**
         JSON Schema:
-            ICodingCategoryList {
+            CodingCategoriesSerializer {
                 count       (string),
                 next        (string),
                 previous    (string),
@@ -58,14 +58,15 @@ namespace LiveCodingTV.API.Wrappers.Models {
             Previous    - The link to query the previous set of categories
             Results     - A array of the cateogies used on LiveCoding.tv
      */
-    public class ICodingCategoryList : IAPIResponseList {
-        public ICodingCategory[] Categories {
-            get {
-                string json = results.ToString();
-                var set = new JsonSerializerSettings() { ContractResolver = new MyContractResolver() };
-                var objs = JsonConvert.DeserializeObject<ICodingCategory[]>(json, set);
-                return objs;
-            }
+
+    // TODO: Get next and previous!
+    public class CodingCategoryList : APIResponseList<CodingCategory> {
+        public CodingCategoryList GetNext(Engine eng) {
+            return eng.CodingCategories.getList(next);
+        }
+
+        public CodingCategoryList GetPrevious(Engine eng) {
+            return eng.CodingCategories.getList(previous);
         }
     }
 }

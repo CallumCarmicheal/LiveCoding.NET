@@ -16,7 +16,7 @@ namespace LiveCodingTV.API.Wrappers {
     }
 
     public class Serializer {
-        public class MyContractResolver : Newtonsoft.Json.Serialization.DefaultContractResolver {
+        public class JSONnetPrivateManager : Newtonsoft.Json.Serialization.DefaultContractResolver {
             protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization) {
                 var props = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
                                 .Select(p => base.CreateProperty(p, memberSerialization))
@@ -28,101 +28,17 @@ namespace LiveCodingTV.API.Wrappers {
             }
         }
 
-        public Serializer_Status toCodingCategory    (string json, out ICodingCategory @out)        {
+        public Serializer_Status toType<T>           (string json, out T @out) {
             Serializer_Status status = new Serializer_Status();
 
             try {
-                var set = new JsonSerializerSettings() { ContractResolver = new MyContractResolver() };
-                var resp = JsonConvert.DeserializeObject<ICodingCategory>(json, set);
+                var set = new JsonSerializerSettings() { ContractResolver = new JSONnetPrivateManager() };
+                var resp = JsonConvert.DeserializeObject<T>(json, set);
                 @out = resp; return status;
             } catch (Exception ex) {
                 status.Error = true;
                 status.Exception = ex;
-                @out = null; return status;
-            }
-        }
-
-        public Serializer_Status toCodingCategories  (string json, out ICodingCategoryList @out)    {
-            Serializer_Status status = new Serializer_Status();
-
-            try {
-                var set = new JsonSerializerSettings() { ContractResolver = new MyContractResolver() };
-                var resp = JsonConvert.DeserializeObject<ICodingCategoryList>(json, set);
-                @out = resp; return status;
-            } catch (Exception ex) {
-                status.Error = true;
-                status.Exception = ex;
-                @out = null; return status;
-            }
-        }
-
-        public Serializer_Status toLanguage          (string json, out ILanguage @out)              {
-            Serializer_Status status = new Serializer_Status();
-
-            try {
-                var set = new JsonSerializerSettings() { ContractResolver = new MyContractResolver() };
-                var resp = JsonConvert.DeserializeObject<ILanguage>(json, set);
-                @out = resp; return status;
-            } catch (Exception ex) {
-                status.Error = true;
-                status.Exception = ex;
-                @out = null; return status;
-            }
-        }
-
-        public Serializer_Status toLanguages         (string json, out ILanguageList @out)          {
-            Serializer_Status status = new Serializer_Status();
-
-            try {
-                var set = new JsonSerializerSettings() { ContractResolver = new MyContractResolver() };
-                var resp = JsonConvert.DeserializeObject<ILanguageList>(json, set);
-                @out = resp; return status;
-            } catch (Exception ex) {
-                status.Error = true;
-                status.Exception = ex;
-                @out = null; return status;
-            }
-        }
-
-        public Serializer_Status toLivestreamInfo    (string json, out ILivestream @out)            {
-            Serializer_Status status = new Serializer_Status();
-
-            try {
-                var set = new JsonSerializerSettings() { ContractResolver = new MyContractResolver() };
-                var resp = JsonConvert.DeserializeObject<ILivestream>(json, set);
-                @out = resp; return status;
-            } catch (Exception ex) {
-                status.Error = true;
-                status.Exception = ex;
-                @out = null; return status;
-            }
-        }
-
-        public Serializer_Status toLivestreams       (string json, out ILivestreamList @out)        {
-            Serializer_Status status = new Serializer_Status();
-
-            try {
-                var set = new JsonSerializerSettings() { ContractResolver = new MyContractResolver() };
-                var resp = JsonConvert.DeserializeObject<ILivestreamList>(json, set);
-                @out = resp; return status;
-            } catch (Exception ex) {
-                status.Error = true;
-                status.Exception = ex;
-                @out = null; return status;
-            }
-        }
-
-        public Serializer_Status toUser              (string json, out IUser @out) {
-            Serializer_Status status = new Serializer_Status();
-
-            try {
-                var set = new JsonSerializerSettings() { ContractResolver = new MyContractResolver() };
-                var resp = JsonConvert.DeserializeObject<IUser>(json, set);
-                @out = resp; return status;
-            } catch(Exception ex) {
-                status.Error     = true;
-                status.Exception = ex;
-                @out = null; return status;
+                @out = default(T); return status;
             }
         }
     }

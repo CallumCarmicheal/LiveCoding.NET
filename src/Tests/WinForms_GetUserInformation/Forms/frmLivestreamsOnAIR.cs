@@ -73,11 +73,11 @@ namespace WinForms_ImplementingAGUI.Forms {
             richTextBox1.Clear();
 
             var ls = Program.apiEngine.getLivestreamsOnAIR();
-            if (ls != null && ls.Livestreams != null) {
-                var lsList = ls.Livestreams;
+            if (ls != null && ls.ToList() != null) {
+                var lsList = ls.ToList();
                 foreach (var l in lsList) {
                     string x = l.CodingCategory.PadRight(20);
-                    richTextBox1.AppendText($"{x} | {l.Title} \n");
+                    richTextBox1.AppendText($"{x} | {l.Title}\n");
                 }
             } else {
                 MessageBox.Show("User does not exist or there was as ERROR");
