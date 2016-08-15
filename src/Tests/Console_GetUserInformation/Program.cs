@@ -134,16 +134,18 @@ namespace Console_GetUserInformation {
                 Console.WriteLine(jsonString + "\n\n");
 
             Console.Write("Attempting to serialize json: "); {
+                var eng = new Engine(oaCreds);
                 var ser = new LiveCodingTV.API.Wrappers.Serializer();
 
                 User user = new User();
-
-                var state = ser.toUser(jsonString, out user);
-
-                if(state.Error) {
+                
+                try {
+                    // Surround with a try and catch!
+                    user = eng.User.getUser(testUser);
+                } catch(Exception ex) {
                     ConColF(ConsoleColor.Red);
                     Console.WriteLine("Error.");
-                    Console.WriteLine("EMsg: " + state.Exception.Message);
+                    Console.WriteLine("EMsg: " + ex.Message);
                     Console.ReadKey(); return;
                 }
 
@@ -155,9 +157,9 @@ namespace Console_GetUserInformation {
                 Console.WriteLine("============================\tUser Information");
 
                 // Print some information about the user
-                ConPrintCol("Username", user.Username);
-                ConPrintCol("Country",  user.Country);
-                ConPrintCol("Fav Line",    user.FavoriteLineOfCode);
+                ConPrintCol("Username",     user.Username);
+                ConPrintCol("Country",      user.Country);
+                ConPrintCol("Fav Line",     user.FavoriteLineOfCode);
             } 
 
             Console.ReadKey();

@@ -80,7 +80,7 @@ namespace WinForms_ImplementingAGUI.Forms {
                 return;
             }
 
-            var user = Program.apiEngine.getUser(username);
+            var user = Program.apiEngine.User.getUser(username);
 
             if (user != null && user.Valid) {
                 pictureBox1.ImageLocation = user.Avatar;
@@ -119,7 +119,7 @@ namespace WinForms_ImplementingAGUI.Forms {
             richTextBox1.Clear();
 
             string username = textBox1.Text;
-            var user = Program.apiEngine.getCurrentUser();
+            var user = Program.apiEngine.User.getCurrent();
 
             if (user != null && user.Valid) {
                 pictureBox1.ImageLocation = user.Avatar;

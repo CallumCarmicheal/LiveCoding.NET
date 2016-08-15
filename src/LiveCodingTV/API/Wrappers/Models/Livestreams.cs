@@ -114,11 +114,11 @@ namespace LiveCodingTV.API.Wrappers.Models {
      */
     public class LivestreamList : APIResponseList<Livestream> {
         public LivestreamList GetNext(Engine eng) {
-            return eng.getLivestreamsFromURL(next);
+            return eng.Livestreams.getList(next);
         }
 
         public LivestreamList GetPrevious(Engine eng) {
-            return eng.getLivestreamsFromURL(previous);
+            return eng.Livestreams.getList(previous);
         }
     }
 }

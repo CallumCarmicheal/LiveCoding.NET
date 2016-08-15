@@ -72,7 +72,7 @@ namespace WinForms_ImplementingAGUI.Forms {
         private void flatButton1_Click(object sender, EventArgs e) {
             richTextBox1.Clear();
 
-            var ls = Program.apiEngine.getLivestreamsOnAIR();
+            var ls = Program.apiEngine.Livestreams.getList_OnAIR();
             if (ls != null && ls.ToList() != null) {
                 var lsList = ls.ToList();
                 foreach (var l in lsList) {
