@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using LiveCodingTV.API;
-using LiveCodingTV.Server;
-using LiveCodingTV.Server.Models;
-using LiveCodingTV.API.Wrappers.Models;
+using LiveEdu.API;
+using LiveEdu.Server;
+using LiveEdu.Server.Models;
+using LiveEdu.API.Wrappers.Models;
 
 namespace Console_GetUserInformation {
     class Program {
@@ -135,7 +135,7 @@ namespace Console_GetUserInformation {
 
             Console.Write("Attempting to serialize json: "); {
                 var eng = new Engine(oaCreds);
-                var ser = new LiveCodingTV.API.Wrappers.Serializer();
+                var ser = new LiveEdu.API.Wrappers.Serializer();
 
                 User user = new User();
                 

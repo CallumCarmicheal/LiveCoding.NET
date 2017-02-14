@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using m = LiveCodingTV.API.Wrappers.Models;
+using m = LiveEdu.API.Wrappers.Models;
 
 namespace WinForms_ImplementingAGUI.Forms.Controls {
     public partial class Livestream : UserControl {
@@ -43,8 +43,6 @@ namespace WinForms_ImplementingAGUI.Forms.Controls {
             pictureBox2.Refresh();
 
             label1.Text = ls.Title;
-
-
         }
     }
 }

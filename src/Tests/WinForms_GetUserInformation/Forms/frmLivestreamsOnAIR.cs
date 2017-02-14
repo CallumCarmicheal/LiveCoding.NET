@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using LiveCodingTV.API.Wrappers.Models;
+using LiveEdu.API.Wrappers.Models;
 
 namespace WinForms_ImplementingAGUI.Forms {
     public partial class frmLivestreamsOnAIR : Form {

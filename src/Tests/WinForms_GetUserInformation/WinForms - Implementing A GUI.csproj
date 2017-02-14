@@ -133,16 +133,16 @@
     <None Include="Resources\logo-white-alt.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\LiveCodingTV\LiveCoding.TV .NET API Wrapper.csproj">
-      <Project>{36c8bf1d-9f44-4461-870e-6951dfa43dd8}</Project>
-      <Name>LiveCoding.TV .NET API Wrapper</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\thumbnail_250_140.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\5aeb3a2743841c62228ab5a1ba5ab25e.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\LiveEdu API\LiveEdu API.csproj">
+      <Project>{36c8bf1d-9f44-4461-870e-6951dfa43dd8}</Project>
+      <Name>LiveEdu API</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

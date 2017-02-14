@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LiveCodingTV.API;
-using LiveCodingTV.Server;
-using LiveCodingTV.Server.Models;
-using LiveCodingTV.API.Wrappers.Models;
 using System.Threading;
 using System.ComponentModel;
+using LiveEdu.API;
+using LiveEdu.Server;
+using LiveEdu.Server.Models;
 
 namespace WinForms_ImplementingAGUI {
     static class Program {
