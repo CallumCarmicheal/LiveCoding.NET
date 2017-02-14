@@ -64,22 +64,27 @@ namespace LiveCodingTV.API {
         public Engine(oAuthAuth token) {
             this.oaCreds = token;
 
-            this.CodingCategories    = new v2_CodingCategories(aReq, oaCreds, ser);
-            this.Languages           = new v2_Languages(aReq, oaCreds, ser);
-            this.Livestreams         = new v2_Livestreams(aReq, oaCreds, ser);
-            this.ScheduledBroadcasts = new v2_ScheduledBroadcast(aReq, oaCreds, ser);
-            this.User                = new v2_User(aReq, oaCreds, ser);
-            this.Videos              = new v2_Videos(aReq, oaCreds, ser);
+            this.CodingCategories    = new v2_CodingCategories(this, aReq, oaCreds, ser);
+            this.Languages           = new v2_Languages(this, aReq, oaCreds, ser);
+            this.Livestreams         = new v2_Livestreams(this, aReq, oaCreds, ser);
+            this.ScheduledBroadcasts = new v2_ScheduledBroadcast(this, aReq, oaCreds, ser);
+            this.User                = new v2_User(this, aReq, oaCreds, ser);
+            this.Videos              = new v2_Videos(this, aReq, oaCreds, ser);
         }
+
+
+        public oAuthAuth getOAuth() { return this.oaCreds; }
+        public APIRequestHandler getRequestHandler() { return this.aReq; }
+        public Serializer getSerializer() { return this.ser; }
 
         public class v2_CodingCategories {
             APIRequestHandler aReq; oAuthAuth         oaCreds;
-            Serializer        ser;
+            Serializer        ser; Engine engine;
 
-            public v2_CodingCategories(APIRequestHandler aReq, oAuthAuth oaCreds, 
+            public v2_CodingCategories(Engine eng, APIRequestHandler aReq, oAuthAuth oaCreds, 
                 Serializer ser) {
                 this.aReq = aReq; this.oaCreds = oaCreds;
-                this.ser  = ser;
+                this.ser  = ser; engine = eng;
             }
 
             public CodingCategoryList getList() {
@@ -87,14 +92,14 @@ namespace LiveCodingTV.API {
                 CodingCategoryList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
             public CodingCategoryList getList(string url) {
                 var jsonString = aReq.getAPIJson(url, oaCreds, true);
                 CodingCategoryList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
             
             public CodingCategory get(string Category) {
@@ -102,18 +107,18 @@ namespace LiveCodingTV.API {
                 CodingCategory obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
         }
 
         public class v2_Languages {
             APIRequestHandler aReq; oAuthAuth oaCreds;
-            Serializer ser;
+            Serializer ser; Engine engine;
 
-            public v2_Languages(APIRequestHandler aReq, oAuthAuth oaCreds,
+            public v2_Languages(Engine eng, APIRequestHandler aReq, oAuthAuth oaCreds,
                 Serializer ser) {
                 this.aReq = aReq; this.oaCreds = oaCreds;
-                this.ser = ser;
+                this.ser = ser; this.engine = eng;
             }
 
             public LanguageList getList() {
@@ -121,14 +126,14 @@ namespace LiveCodingTV.API {
                 LanguageList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
             public LanguageList getList(string url) {
                 var jsonString = aReq.getAPIJson(url, oaCreds, true);
                 LanguageList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
 
 
@@ -137,18 +142,18 @@ namespace LiveCodingTV.API {
                 Language obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
         }
 
         public class v2_Livestreams {
             APIRequestHandler aReq; oAuthAuth oaCreds;
-            Serializer ser;
+            Serializer ser; Engine engine;
 
-            public v2_Livestreams(APIRequestHandler aReq, oAuthAuth oaCreds,
+            public v2_Livestreams(Engine eng, APIRequestHandler aReq, oAuthAuth oaCreds,
                 Serializer ser) {
                 this.aReq = aReq; this.oaCreds = oaCreds;
-                this.ser = ser;
+                this.ser = ser; engine = eng;
             }
 
             public LivestreamList getList() {
@@ -156,39 +161,39 @@ namespace LiveCodingTV.API {
                 LivestreamList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
             public LivestreamList getList(string url) {
                 var jsonString = aReq.getAPIJson(url, oaCreds, true);
                 LivestreamList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
             public LivestreamList getList_OnAIR() {
                 var jsonString = aReq.getAPIJson(APIResources.LivestreamsOA, oaCreds, true);
                 LivestreamList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
             public Livestream     get(string livestream) {
                 var jsonString = aReq.getAPIJson(APIResources.getLivestream(livestream), oaCreds, true);
                 Livestream obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
         }
 
         public class v2_ScheduledBroadcast {
             APIRequestHandler aReq; oAuthAuth oaCreds;
-            Serializer ser;
+            Serializer ser; Engine engine;
 
-            public v2_ScheduledBroadcast(APIRequestHandler aReq, oAuthAuth oaCreds,
+            public v2_ScheduledBroadcast(Engine eng, APIRequestHandler aReq, oAuthAuth oaCreds,
                 Serializer ser) {
                 this.aReq = aReq; this.oaCreds = oaCreds;
-                this.ser = ser;
+                this.ser = ser; engine = eng;
             }
 
             public ScheduledBroadcastList getList() {
@@ -196,32 +201,32 @@ namespace LiveCodingTV.API {
                 ScheduledBroadcastList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
             public ScheduledBroadcastList getList(string url) {
                 var jsonString = aReq.getAPIJson(url, oaCreds, true);
                 ScheduledBroadcastList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
             public ScheduledBroadcastList get(int ID) {
                 var jsonString = aReq.getAPIJson(APIResources.getScheduledBroadcast("" + ID), oaCreds, true);
                 ScheduledBroadcastList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
         }
 
         public class v2_User {
             APIRequestHandler aReq; oAuthAuth oaCreds;
-            Serializer ser;
+            Serializer ser; Engine engine;
 
-            public v2_User(APIRequestHandler aReq, oAuthAuth oaCreds,
+            public v2_User(Engine eng, APIRequestHandler aReq, oAuthAuth oaCreds,
                 Serializer ser) {
                 this.aReq = aReq; this.oaCreds = oaCreds;
-                this.ser = ser;
+                this.ser = ser; this.engine = eng;
             }
 
             public User getCurrent() {
@@ -229,14 +234,14 @@ namespace LiveCodingTV.API {
                 User obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
-            public User getUser(string user) {
+            public User GetUser(string user) {
                 var jsonString = aReq.getAPIJson(APIResources.getUser(user), oaCreds, true);
                 User obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
 
             public UserList Followers() {
@@ -244,7 +249,7 @@ namespace LiveCodingTV.API {
                 UserList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
 
             public UserList Follows() {
@@ -252,7 +257,15 @@ namespace LiveCodingTV.API {
                 UserList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
+            }
+
+            public VideoList Videos() {
+                var jsonString = aReq.getAPIJson(APIResources.UserVideos, oaCreds, true);
+                VideoList obj;
+                var state = ser.toType(jsonString, out obj);
+                if (state.Error) return null;
+                else { obj.API_SetEngine(engine); return obj; }
             }
 
             // TODO: Livestreams, Livestreams ONAIR, Viewing Key, 
@@ -265,12 +278,12 @@ namespace LiveCodingTV.API {
         
         public class v2_Videos {
             APIRequestHandler aReq; oAuthAuth oaCreds;
-            Serializer ser;
+            Serializer ser; Engine engine;
 
-            public v2_Videos(APIRequestHandler aReq, oAuthAuth oaCreds,
+            public v2_Videos(Engine eng, APIRequestHandler aReq, oAuthAuth oaCreds,
                 Serializer ser) {
                 this.aReq = aReq; this.oaCreds = oaCreds;
-                this.ser = ser;
+                this.ser = ser; engine = eng;
             }
 
             public VideoList getList() {
@@ -278,7 +291,7 @@ namespace LiveCodingTV.API {
                 VideoList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
 
             public VideoList getList(string url) {
@@ -286,7 +299,7 @@ namespace LiveCodingTV.API {
                 VideoList obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
 
             public Video get(string url) {
@@ -294,7 +307,7 @@ namespace LiveCodingTV.API {
                 Video obj;
                 var state = ser.toType(jsonString, out obj);
                 if (state.Error) return null;
-                else return obj;
+                else { obj.API_SetEngine(engine); return obj; }
             }
         }
         

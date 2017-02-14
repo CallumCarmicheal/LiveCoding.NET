@@ -93,7 +93,7 @@ namespace Console_GetUserInformation {
 
                 i++;
 
-                if (i <= 5) {
+                if (i <= 10000) {
                     i = 0;
 
                     ConColF(ConsoleColor.Yellow);
@@ -141,7 +141,7 @@ namespace Console_GetUserInformation {
                 
                 try {
                     // Surround with a try and catch!
-                    user = eng.User.getUser(testUser);
+                    user = eng.User.GetUser(testUser);
                 } catch(Exception ex) {
                     ConColF(ConsoleColor.Red);
                     Console.WriteLine("Error.");

@@ -9,14 +9,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using LiveCodingTV.API.Wrappers.Models;
 
 namespace WinForms_ImplementingAGUI.Forms {
     public partial class frmLivestreamsOnAIR : Form {
+        Controls.Livestream[] cLivestreams;
+
         public frmLivestreamsOnAIR() {
             InitializeComponent();
 
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
+
+            cLivestreams = new Controls.Livestream[6] {
+                livestream1, livestream2, livestream3,
+                livestream4, livestream5, livestream6
+            };
         }
 
         private void Main_Load(object sender, EventArgs e) {
@@ -70,7 +78,7 @@ namespace WinForms_ImplementingAGUI.Forms {
         #endregion
 
         private void flatButton1_Click(object sender, EventArgs e) {
-            richTextBox1.Clear();
+            /*richTextBox1.Clear();
 
             var ls = Program.apiEngine.Livestreams.getList_OnAIR();
             if (ls != null && ls.ToList() != null) {
@@ -81,7 +89,20 @@ namespace WinForms_ImplementingAGUI.Forms {
                 }
             } else {
                 MessageBox.Show("User does not exist or there was as ERROR");
-            }
+            }*/
+
+
+            var streams = Program.apiEngine.Livestreams.getList_OnAIR();
+
+            var max = streams.Count;
+            if (max >= 5) max = 5;
+
+            for (int x = 0; x < max; x++) 
+                cLivestreams[x].LoadStream(streams.ToArray()[x], cbLivestreamClick);
+        }
+
+        private void cbLivestreamClick(Livestream ls) {
+
         }
 
         private void flatButton2_Click(object sender, EventArgs e) {

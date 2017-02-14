@@ -61,7 +61,7 @@
 	if(!isset($_GET)) { die("INVALID REQUEST!"); }
 	if(empty($_GET))  { die("INVALID REQUEST!"); }
 	
-	$LIVECODING_TOKEN_URL 	= "https://www.livecoding.tv/o/token/";
+	$LIVECODING_TOKEN_URL 	= "https://www.liveedu.tv/o/token/";
 	
 	/*
 	grant_type=authorization_code

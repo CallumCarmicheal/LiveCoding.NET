@@ -28,7 +28,7 @@ namespace LiveCodingTV.API.Wrappers.Models {
             Name    - Name of the coding category
             Sort    - ID?
      */
-    public class CodingCategory {
+    public class CodingCategory : APIClass {
         public string
             url,
             name;

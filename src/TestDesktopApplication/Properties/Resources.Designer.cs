@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WinForms_ImplementingAGUI.Properties {
+namespace TestDesktopApplication.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace WinForms_ImplementingAGUI.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WinForms_ImplementingAGUI.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TestDesktopApplication.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,29 +63,9 @@ namespace WinForms_ImplementingAGUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _5aeb3a2743841c62228ab5a1ba5ab25e {
-            get {
-                object obj = ResourceManager.GetObject("5aeb3a2743841c62228ab5a1ba5ab25e", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap logo_white_alt {
             get {
                 object obj = ResourceManager.GetObject("logo-white-alt", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap thumbnail_250_140 {
-            get {
-                object obj = ResourceManager.GetObject("thumbnail_250_140", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

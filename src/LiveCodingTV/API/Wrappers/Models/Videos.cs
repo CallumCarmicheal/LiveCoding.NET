@@ -78,7 +78,7 @@ namespace LiveCodingTV.API.Wrappers.Models {
             duration,
             viewers_overall;
         string[]
-            viewing_url;
+            viewing_urls;
 
         public string               URL                     { get { return this.url;                             } }
         public string               Slug                    { get { return this.slug;                            } }
@@ -92,7 +92,7 @@ namespace LiveCodingTV.API.Wrappers.Models {
         public string               Thumnail                { get { return this.thumnail_url;                    } }
         public int                  Duration                { get { return this.duration; } }
         public int                  TotalViewers            { get { return this.viewers_overall;                 } }
-        public string[]             ViewingURL              { get { return this.viewing_url;                     } }
+        public string[]             ViewingURL              { get { return this.viewing_urls;                    } }
         public LanguageDifficulty   Difficulty    { get { return LanguageHelper.toLD(this.difficulty); } }
         public DateTime             CreationTime            { get { return DateTime.Parse(this.creation_time); } }
     }

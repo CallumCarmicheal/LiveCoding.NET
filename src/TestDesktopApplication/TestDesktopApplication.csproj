@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5BC09953-B2B7-4200-A8B2-EDBD36BAD770}</ProjectGuid>
+    <ProjectGuid>{598E7880-5A7F-449F-8D94-BF4A4636EE5D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WinForms_ImplementingAGUI</RootNamespace>
-    <AssemblyName>WinForms_ImplementingAGUI</AssemblyName>
+    <RootNamespace>TestDesktopApplication</RootNamespace>
+    <AssemblyName>TestDesktopApplication</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,10 +32,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TestDesktopApplication.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,62 +54,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\Controls\FlatButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Forms\Controls\FlatProgressbar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Forms\Controls\Livestream.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Controls\Livestream.Designer.cs">
-      <DependentUpon>Livestream.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Controls\OutlineLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Forms\frmLivestreamsOnAIR.cs">
+    <Compile Include="Forms\Spash.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmLivestreamsOnAIR.Designer.cs">
-      <DependentUpon>frmLivestreamsOnAIR.cs</DependentUpon>
+    <Compile Include="Forms\Spash.Designer.cs">
+      <DependentUpon>Spash.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmUserViewer.cs">
+    <Compile Include="Forms\XtraForm1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmUserViewer.Designer.cs">
-      <DependentUpon>frmUserViewer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SplashScreens\Splashscreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SplashScreens\Splashscreen.Designer.cs">
-      <DependentUpon>Splashscreen.cs</DependentUpon>
+    <Compile Include="Forms\XtraForm1.Designer.cs">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Controls\Livestream.resx">
-      <DependentUpon>Livestream.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Spash.resx">
+      <DependentUpon>Spash.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmLivestreamsOnAIR.resx">
-      <DependentUpon>frmLivestreamsOnAIR.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\XtraForm1.resx">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmUserViewer.resx">
-      <DependentUpon>frmUserViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SplashScreens\Splashscreen.resx">
-      <DependentUpon>Splashscreen.cs</DependentUpon>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -127,22 +99,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Lib\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\logo-white-alt.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\LiveCodingTV\LiveCoding.TV .NET API Wrapper.csproj">
-      <Project>{36c8bf1d-9f44-4461-870e-6951dfa43dd8}</Project>
-      <Name>LiveCoding.TV .NET API Wrapper</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\thumbnail_250_140.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\5aeb3a2743841c62228ab5a1ba5ab25e.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

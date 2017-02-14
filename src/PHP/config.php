@@ -11,9 +11,9 @@
 	define("AUTHENTICATION_TYPE", 				ENUM_AUTHENTICATION_IMPLICIT);
 	define("AUTHENTICATION_CLIENT_ID", 			"");
 	define("AUTHENTICATION_CLIENT_SECRET", 		"");
-	define("AUTHENTICATION_CALLBACK_URL", 		"");
-	define("TOKEN_EXPIRATION_MINS",				120); // This is how many minutes until inactive and un-used tokens are deleted
-													  // Note once the token has been enabled the token will be set to "NOW() + 2 HOURS!"
+	define("AUTHENTICATION_CALLBACK_URL", 		""); 
+	define("TOKEN_EXPIRATION_MINS",				120);   // This is how many minutes until inactive and un-used tokens are deleted
+													    // Note once the token has been enabled the token will be set to "NOW() + 2 HOURS!"
 	define("API_CHECK_SSL_REQUESTS", 			false); // This will check the ssl cert when using CURL, WILL CAUSE ISSUES SOMETIMES! DEFAULT: TRUE!
 	
 	// MYSQL SETTINGS
@@ -54,14 +54,6 @@
 	}
 	
 	function LC_API_GENERATE_AUTH_URL($GUID) {
-		// NOT USED ANYMORE
-			// https://www.livecoding.tv/o/authorize?
-			// client_id=XXXXXXXXXXX&
-			// response_type=token&state=XXXXXXXXXXX
-			//$url = LC_API_URL_AUTHORISE;
-			//$url .= '?client_id='. AUTHENTICATION_CLIENT_ID. '&';
-			//$url .= 'response_type=token&state='. $GUID;
-		
 		//https://www.livecoding.tv/o/authorize/?
 		//scope=read
 		//state=
@@ -238,5 +230,3 @@
 	//		valid		tinyint		
 	//		created		timestamp	
 	//		expires		timestamp	
-	
-	

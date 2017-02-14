@@ -56,6 +56,7 @@ namespace LiveCodingTV.API.Wrappers.Models {
             Viewing URLS    - Urls to view/buffer the livestream from ????
      */
     public class Livestream : APIResponse {
+
         string
             url,
             user,
@@ -87,6 +88,11 @@ namespace LiveCodingTV.API.Wrappers.Models {
         public bool                 IsLive              { get { return this.is_live;                                            } }
         public int                  ViewerCount         { get { return this.viewers_live;                                       } }
         public LanguageDifficulty   Difficulty          { get { return LanguageHelper.toLD(this.difficulty);                    } }
+
+        public User GetStreamer() {
+            var eng = API_GetEngine();
+            return eng.User.GetUser(Slug);
+        }
     }
 
     /**

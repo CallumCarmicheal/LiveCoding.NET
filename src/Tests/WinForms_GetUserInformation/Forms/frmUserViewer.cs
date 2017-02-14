@@ -80,7 +80,7 @@ namespace WinForms_ImplementingAGUI.Forms {
                 return;
             }
 
-            var user = Program.apiEngine.User.getUser(username);
+            var user = Program.apiEngine.User.GetUser(username);
 
             if (user != null && user.Valid) {
                 pictureBox1.ImageLocation = user.Avatar;

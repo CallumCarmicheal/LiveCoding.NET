@@ -9,7 +9,7 @@ namespace LiveCodingTV.API {
         // OA = OnAir
         
         public static string
-            APIBasePath         = "https://www.livecoding.tv:443/api/",
+            APIBasePath         = "https://www.liveedu.tv:443/api/",
             
             CodingCategories    = APIBasePath   + "codingcategories/",
             Languages           = APIBasePath   + "languages/",
@@ -24,8 +24,8 @@ namespace LiveCodingTV.API {
             UserXMPP            = User          + "chat/account/",
             UserLivestreams     = User          + "livestreams/",
             UserLivestreamsOA   = User          + "livestreams/onair/",
-            UserVideos          = User          + "livestreams/videos/",
-            UserVideosLatest    = User          + "livestreams/videos/latest/",
+            UserVideos          = User          + "videos/",
+            UserVideosLatest    = User          + "videos/latest/",
 
             Users               = APIBasePath   + "users/",
 

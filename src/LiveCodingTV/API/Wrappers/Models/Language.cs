@@ -60,7 +60,7 @@ namespace LiveCodingTV.API.Wrappers.Models {
             Name    - Language Name
             URL     - Language URL
      */
-    public class Language {
+    public class Language : APIResponse {
         public string
             name,
             url;
